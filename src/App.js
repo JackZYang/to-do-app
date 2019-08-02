@@ -7,7 +7,7 @@ class ToDo extends React.Component {
     super(props);
     this.state = {
       input: '',
-      itemlist: [],
+      itemlist: []
     };
   }
 
@@ -19,10 +19,14 @@ class ToDo extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (/\S/.test(this.state.input)) {
+      this.setState({
+        itemlist: [...this.state.itemlist, this.state.input]
+      });
+    }
     this.setState({
-      itemlist: [...this.state.itemlist, this.state.input],
       input: ''
-    });
+    })
   }
 
   handleDelete = (indexToDelete) => {
@@ -34,14 +38,11 @@ class ToDo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ToDoApp">
         <h1>To do:</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Add:<br />
-          </label>
-          <input type="text" value={this.state.input} onChange={this.handleChange} />
-          <button>Submit</button>
+          <input type="text" className="form-control" value={this.state.input} onChange={this.handleChange} />
+          <button className="btn btn-success">Submit</button>
         </form>
         <ToDoList itemlist={this.state.itemlist} handleDelete={this.handleDelete} />
       </div>

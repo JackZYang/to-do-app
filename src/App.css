@@ -1,0 +1,21 @@
+h1 {
+    padding: 20px;
+}
+
+.ToDoApp {
+    text-align: center;
+}
+
+button {
+    margin: 15px;
+}
+
+ul {
+    display: inline-block;  
+    padding: 0;
+}
+
+.form-control {
+    max-width: 30%;
+    margin: auto;
+}
