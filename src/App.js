@@ -1,29 +1,34 @@
 import React from 'react';
 import './App.css';
-import Todolist from './Todolist';
+import ToDoList from './ToDoList';
 
-class Todo extends React.Component {
+class ToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
-      itemlist: []
+      itemlist: [],
     };
-    this.handleSubmit=this.handleSubmit.bind(this);
-    this.handleChange=this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       input: event.target.value
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
       itemlist: [...this.state.itemlist, this.state.input],
       input: ''
+    });
+  }
+
+  handleDelete = (indexToDelete) => {
+    this.state.itemlist.splice(indexToDelete, 1);
+    this.setState({
+      itemlist: this.state.itemlist,
     });
   }
 
@@ -35,13 +40,13 @@ class Todo extends React.Component {
           <label>
             Add:<br />
           </label>
-          <input type="text" value={this.state.input} onChange={this.handleChange}/>
+          <input type="text" value={this.state.input} onChange={this.handleChange} />
           <button>Submit</button>
         </form>
-        <Todolist itemlist={this.state.itemlist} />
+        <ToDoList itemlist={this.state.itemlist} handleDelete={this.handleDelete} />
       </div>
     );
   }
 }
 
-export default Todo;
+export default ToDo;
