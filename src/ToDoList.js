@@ -1,12 +1,13 @@
 import React from 'react';
 
-const ToDoList = (props) => (
+const ToDoList = ({itemlist, handleDelete}) => (
     <ul className="ToDoList">
-      {props.itemlist.map((item, index) => 
-      <li key={index}>
+      {itemlist.map((item, index) => 
+        <li key={index}>
         {item}
-        <button className="btn btn-danger" onClick={props.handleDelete.bind(this, index)}>Delete</button>
-      </li>)}
+        <button className="btn btn-danger" onClick={handleDelete.bind(this, index)}>Delete</button>
+      </li>
+      )}
     </ul>
   );
 
